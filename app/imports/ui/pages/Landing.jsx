@@ -3,19 +3,58 @@ import { Col, Container, Image, Row } from 'react-bootstrap';
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
-  <Container fluid style={{ paddingTop: 20, paddingBottom: 20 }}>
-    <Row id='landing-page' className="align-middle text-center">
-      <Col xs={4}>
-        <Image roundedCircle src="/images/meteor-logo.png" width="150px"/>
-      </Col>
-
-      <Col xs={8} className="d-flex flex-column justify-content-center">
-        <h1>Welcome to this template</h1>
-        <p>Now get to work and modify this app!</p>
-      </Col>
-
-    </Row>
-  </Container>
+  <div id="landing-page">
+    <div className='landing-green-background'>
+      <Container className='text-center'>
+        <h1 style={{ paddingTop: '20px', color: 'white', fontSize: '36pt' }}>
+          Welcome to Bowfolios
+        </h1>
+        <h3 style={{ paddingBottom: '20px', color: 'white' }}>
+          Profiles, projects, and interest areas for the UH Community
+        </h3>
+      </Container>
+    </div>
+    <div className='landing-white-background'>
+      <Container className="justify-content-center text-center">
+        <h2 style={{ color: '#376551' }}>Start by making your profile....</h2>
+        <Row md={1} lg={2}>
+          <Col xs={6}>
+            <Image src="/images/home-page.png" width={500}/>
+          </Col>
+          <Col xs={6}>
+            <Image src="/images/profiles-page.png" width={500}/>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+    <div className='landing-green-background'>
+      <Container className="justify-content-center text-center">
+        <h2 style={{ color: 'white' }}>...then add your projects</h2>
+        <Row md={1} lg={2}>
+          <Col xs={6}>
+            <Image src="/images/add-project-page.png" width={500}/>
+          </Col>
+          <Col xs={6}>
+            <Image src="/images/projects-page.png" width={500}/>
+          </Col></Row>
+      </Container>
+    </div>
+    <div className='landing-white-background text-center'>
+      <h2 style={{ color: '#376551' }}>
+        Connect to people and projects with shared interests!
+      </h2>
+      <Container>
+        <Row md={1} lg={2}>
+          <Col xs={6}>
+            <Image src="/images/interests-page.png" width={500}/>
+          </Col>
+          <Col xs={6}>
+            <Image src="/images/filter-page.png" width={500}/>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  </div>
 );
 
 export default Landing;

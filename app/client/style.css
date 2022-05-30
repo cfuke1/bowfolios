@@ -2,15 +2,29 @@
  See https://getbootstrap.com/docs/5.2/customize/css-variables/
  */
 body {
-  --bs-dark: #00241B;
-  --bs-light-rgb: 181, 225, 255;
+  --bs-dark: #376551;
+  --bs-dark-rgb: 55, 101, 81;
   --bs-body-font-size: 20px;
 }
 
 /* Define custom styles */
-.gray-background {
-  background-color: var(--bs-gray-200);
+.bowfolio-green {
+  color:  #376551;
+}
+
+.landing-green-background {
+  background-color: var(--bs-dark);
+  color: white;
+  padding-top: 20px;
+}
+
+.landing-white-background {
+  background-color: white;
   color: var(--bs-dark);
-  padding-top: 10px;
-  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.reset-margins {
+  margin-top: 0;
+  margin-bottom: 0;
 }

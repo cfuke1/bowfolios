@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { BoxArrowRight, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
 
 const NavBar = () => {
@@ -11,21 +11,26 @@ const NavBar = () => {
   const { currentUser } = useTracker(() => ({
     currentUser: Meteor.user() ? Meteor.user().username : '',
   }), []);
-
+  const menuStyle = { marginBottom: '0px' };
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="lg" style={menuStyle} className="bg-light">
       <Container>
-        <Navbar.Brand as={NavLink} activeClassName="active" exact to="/"><h2>meteor-application-template-react</h2>
+        <Navbar.Brand as={NavLink} activeClassName="active" exact to="/">
+          <Image src="/images/logo.png" width={50}/>
+          <span className='bowfolio-green' style={{ fontWeight: 800, fontSize: '24px' }}>Bowfolios</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto justify-content-start">
-            {currentUser ? ([
-              <Nav.Link as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Stuff</Nav.Link>,
-              <Nav.Link as={NavLink} activeClassName="active" exact to="/list" key='list'>List Stuff</Nav.Link>,
-            ]) : ''}
-            {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Nav.Link as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Nav.Link>
+            {currentUser ? (
+              <Nav.Link as={NavLink} id="homeMenuItem" activeClassName="active" exact to="/home" key='home'>Home</Nav.Link>
+            ) : ''}
+            <Nav.Link as={NavLink} id="profilesMenuItem" activeClassName="active" exact to="/profiles" key='profiles'>Profiles</Nav.Link>
+            <Nav.Link as={NavLink} id="projectsMenuItem" activeClassName="active" exact to="/projects" key='projects'>Projects</Nav.Link>
+            <Nav.Link as={NavLink} id="interestsMenuItem" activeClassName="active" exact to="/interests" key='interests'>Interests</Nav.Link>
+            {currentUser ? (
+              [<Nav.Link as={NavLink} id="addProjectMenuItem" activeClassName="active" exact to="/addProject" key='addP'>Add Project</Nav.Link>,
+                <Nav.Link as={NavLink} id="filterMenuItem" activeClassName="active" exact to="/filter" key='filter'>Filter</Nav.Link>]
             ) : ''}
           </Nav>
           <Nav className="justify-content-end">
