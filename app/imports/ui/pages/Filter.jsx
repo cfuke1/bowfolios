@@ -97,8 +97,8 @@ const Filter = () => {
     <Container id={PageIDs.filterPage} style={pageStyle}>
       <AutoForm schema={bridge} onSubmit={data => submit(data)} model={ { interests } }>
         <Card>
-          <Card.Body>
-            <SelectField id={ComponentIDs.filterFormInterests} name='interests' multiple placeholder='Interests' checkboxes/>
+          <Card.Body id={ComponentIDs.filterFormInterests}>
+            <SelectField name='interests' multiple placeholder='Interests' checkboxes/>
             <SubmitField id={ComponentIDs.filterFormSubmit} value='Submit'/>
           </Card.Body>
         </Card>

@@ -63,7 +63,7 @@ class NavBar {
     if (!visible) {
       await testController.click('button.navbar-toggler');
     }
-    await testController.click(`#${ComponentIDs.addProjectMenuItem}`);
+    await testController.click(`#${ComponentIDs.filterMenuItem}`);
   }
 
   /** Check that the specified user is currently logged in. */
