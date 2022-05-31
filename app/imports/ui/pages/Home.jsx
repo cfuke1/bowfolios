@@ -15,6 +15,7 @@ import { Projects } from '../../api/projects/Projects';
 import { updateProfileMethod } from '../../startup/both/Methods';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
+import { ComponentIDs, PageIDs } from '../utilities/ids';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allInterests, allProjects) => new SimpleSchema({
@@ -67,18 +68,18 @@ const Home = () => {
   const profile = Profiles.collection.findOne({ email });
   const model = _.extend({}, profile, { interests, projects });
   return ready ? (
-    <Container id="home-page" className="justify-content-center" style={pageStyle}>
+    <Container id={PageIDs.homePage} className="justify-content-center" style={pageStyle}>
       <Col>
         <Col className="justify-content-center text-center"><h2>Your Profile</h2></Col>
         <AutoForm model={model} schema={bridge} onSubmit={data => submit(data)}>
           <Card>
             <Card.Body>
               <Row>
-                <Col xs={4}><TextField id='firstName' name='firstName' showInlineError={true} placeholder={'First Name'}/></Col>
-                <Col xs={4}><TextField id='lastName' name='lastName' showInlineError={true} placeholder={'Last Name'}/></Col>
+                <Col xs={4}><TextField id={ComponentIDs.homeFormFirstName} name='firstName' showInlineError={true} placeholder={'First Name'}/></Col>
+                <Col xs={4}><TextField id={ComponentIDs.homeFormLastName} name='lastName' showInlineError={true} placeholder={'Last Name'}/></Col>
                 <Col xs={4}><TextField name='email' showInlineError={true} placeholder={'email'} disabled/></Col>
               </Row>
-              <LongTextField id='bio' name='bio' placeholder='Write a little bit about yourself.'/>
+              <LongTextField id={ComponentIDs.homeFormBio} name='bio' placeholder='Write a little bit about yourself.'/>
               <Row>
                 <Col xs={6}><TextField name='title' showInlineError={true} placeholder={'Title'}/></Col>
                 <Col xs={6}><TextField name='picture' showInlineError={true} placeholder={'URL to picture'}/></Col>
@@ -87,7 +88,7 @@ const Home = () => {
                 <Col xs={6}><SelectField name='interests' showInlineError={true} multiple/></Col>
                 <Col xs={6}><SelectField name='projects' showInlineError={true} multiple/></Col>
               </Row>
-              <SubmitField id='home-page-submit' value='Update'/>
+              <SubmitField id={ComponentIDs.homeFormSubmit} value='Update'/>
             </Card.Body>
           </Card>
         </AutoForm>

@@ -1,8 +1,9 @@
 import { Selector } from 'testcafe';
+import { ComponentIDs, PageIDs } from '../imports/ui/utilities/ids';
 
 class FilterPage {
   constructor() {
-    this.pageId = '#filter-page';
+    this.pageId = `#${PageIDs.filterPage}`;
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -15,14 +16,14 @@ class FilterPage {
   async filter(testController) {
     await this.isDisplayed(testController);
     // Select visualization and submit
-    const interestsSelector = Selector('#interests');
+    const interestsSelector = Selector(`#${ComponentIDs.filterFormInterests}`);
     const visualizationOption = interestsSelector.find('#Visualization');
     await testController.click(interestsSelector);
     await testController.click(visualizationOption);
     await testController.click(interestsSelector);
-    await testController.click('#submit');
+    await testController.click(`#${ComponentIDs.filterFormSubmit} input.btn.btn-primary`);
     // Check that only one card is displayed.
-    const cardCount = Selector('.ui .card').count;
+    const cardCount = Selector('.card').count;
     await testController.expect(cardCount).eql(1);
   }
 }

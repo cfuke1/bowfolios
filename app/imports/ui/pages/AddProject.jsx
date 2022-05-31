@@ -18,6 +18,7 @@ import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
+import { ComponentIDs, PageIDs } from '../utilities/ids';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allInterests, allParticipants) => new SimpleSchema({
@@ -67,27 +68,27 @@ const AddProject = () => {
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   return ready ? (
     <Container style={pageStyle}>
-      <Row id="add-project-page" className="justify-content-center">
+      <Row id={PageIDs.addProjectPage} className="justify-content-center">
         <Col xs={10}>
           <Col className="text-center"><h2>Add Project</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>
               <Card.Body>
                 <Row>
-                  <Col xs={4}><TextField id='name' name='name' showInlineError={true} placeholder='Project name'/></Col>
-                  <Col xs={4}><TextField id='picture' name='picture' showInlineError={true} placeholder='Project picture URL'/></Col>
-                  <Col xs={4}><TextField id='homepage' name='homepage' showInlineError={true} placeholder='Homepage URL'/></Col>
+                  <Col xs={4}><TextField id={ComponentIDs.addProjectFormName} name='name' showInlineError={true} placeholder='Project name'/></Col>
+                  <Col xs={4}><TextField id={ComponentIDs.addProjectFormPicture} name='picture' showInlineError={true} placeholder='Project picture URL'/></Col>
+                  <Col xs={4}><TextField id={ComponentIDs.addProjectFormHomePage} name='homepage' showInlineError={true} placeholder='Homepage URL'/></Col>
                 </Row>
-                <LongTextField id='description' name='description' placeholder='Describe the project here'/>
+                <LongTextField id={ComponentIDs.addProjectFormDescription} name='description' placeholder='Describe the project here'/>
                 <Row>
-                  <Col xs={6}>
-                    <SelectField id='interests' name='interests' showInlineError={true} placeholder={'Interests'} multiple checkboxes/>
+                  <Col xs={6} id={ComponentIDs.addProjectFormInterests}>
+                    <SelectField name='interests' showInlineError={true} placeholder={'Interests'} multiple checkboxes/>
                   </Col>
-                  <Col xs={6}>
-                    <SelectField id='participants' name='participants' showInlineError={true} placeholder={'Participants'} multiple checkboxes/>
+                  <Col xs={6} id={ComponentIDs.addProjectFormParticipants}>
+                    <SelectField name='participants' showInlineError={true} placeholder={'Participants'} multiple checkboxes/>
                   </Col>
                 </Row>
-                <SubmitField id='submit' value='Submit'/>
+                <SubmitField id={ComponentIDs.addProjectFormSubmit} value='Submit'/>
                 <ErrorsField/>
               </Card.Body>
             </Card>

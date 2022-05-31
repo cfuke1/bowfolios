@@ -6,6 +6,7 @@ import { Alert, Card, Col, Container, Row } from 'react-bootstrap';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { ComponentIDs, PageIDs } from '../utilities/ids';
 
 /*
  * SignUp component is similar to signin component, but we create a new user instead.
@@ -40,7 +41,7 @@ const SignUp = ({ location }) => {
     return <Navigate to={from}/>;
   }
   return (
-    <Container id="signup-page">
+    <Container id={PageIDs.signUpPage}>
       <Row className="justify-content-center">
         <Col xs={9}>
           <Col className="text-center">
@@ -49,10 +50,10 @@ const SignUp = ({ location }) => {
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
               <Card.Body>
-                <TextField name="email" placeholder="E-mail address"/>
-                <TextField name="password" placeholder="Password" type="password"/>
+                <TextField id={ComponentIDs.signUpFormEmail} name="email" placeholder="E-mail address"/>
+                <TextField id={ComponentIDs.signUpFormPassword} name="password" placeholder="Password" type="password"/>
                 <ErrorsField/>
-                <SubmitField/>
+                <SubmitField id={ComponentIDs.signUpFormSubmit}/>
               </Card.Body>
             </Card>
           </AutoForm>

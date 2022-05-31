@@ -1,9 +1,10 @@
 import { Selector } from 'testcafe';
 import { navBar } from './navbar.component';
+import { ComponentIDs, PageIDs } from '../imports/ui/utilities/ids';
 
 class SignupPage {
   constructor() {
-    this.pageId = '#signup-page';
+    this.pageId = `#${PageIDs.signUpPage}`;
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -15,9 +16,9 @@ class SignupPage {
   /** Signs up a new user, then checks to see that they are logged in by checking the navbar. */
   async signupUser(testController, username, password) {
     await this.isDisplayed(testController);
-    await testController.typeText('#signup-form-email', username);
-    await testController.typeText('#signup-form-password', password);
-    await testController.click('#signup-form-submit');
+    await testController.typeText(`#${ComponentIDs.signUpFormEmail}`, username);
+    await testController.typeText(`#${ComponentIDs.signUpFormPassword}`, password);
+    await testController.click(`#${ComponentIDs.signUpFormSubmit} input.btn.btn-primary`);
     await navBar.isLoggedIn(testController, username);
   }
 }

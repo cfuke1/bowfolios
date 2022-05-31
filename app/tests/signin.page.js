@@ -1,9 +1,10 @@
 import { Selector } from 'testcafe';
 import { navBar } from './navbar.component';
+import { ComponentIDs, PageIDs } from '../imports/ui/utilities/ids';
 
-class SigninPage {
+class SignInPage {
   constructor() {
-    this.pageId = '#signin-page';
+    this.pageId = `#${PageIDs.signInPage}`;
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -15,11 +16,11 @@ class SigninPage {
   /** Fills out and submits the form to signin, then checks to see that login was successful. */
   async signin(testController, username, password) {
     await this.isDisplayed(testController);
-    await testController.typeText('#signin-form-email', username);
-    await testController.typeText('#signin-form-password', password);
-    await testController.click('#signin-form-submit input.btn.btn-primary');
+    await testController.typeText(`#${ComponentIDs.signInFormEmail}`, username);
+    await testController.typeText(`#${ComponentIDs.signInFormPassword}`, password);
+    await testController.click(`#${ComponentIDs.signInFormSubmit} input.btn.btn-primary`);
     await navBar.isLoggedIn(testController, username);
   }
 }
 
-export const signinPage = new SigninPage();
+export const signInPage = new SignInPage();

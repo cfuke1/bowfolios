@@ -15,6 +15,7 @@ import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useStickyState } from '../utilities/StickyState';
 import { pageStyle } from './pageStyles';
+import { ComponentIDs, PageIDs } from '../utilities/ids';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allInterests) => new SimpleSchema({
@@ -93,12 +94,12 @@ const Filter = () => {
   const emails = _.pluck(profileWithInterest, 'profile');
   const profileData = _.uniq(emails).map(email => getProfileData(email));
   return ready ? (
-    <Container id="filter-page" style={pageStyle}>
+    <Container id={PageIDs.filterPage} style={pageStyle}>
       <AutoForm schema={bridge} onSubmit={data => submit(data)} model={ { interests } }>
         <Card>
           <Card.Body>
-            <SelectField id='interests' name='interests' multiple placeholder='Interests' checkboxes/>
-            <SubmitField id='submit' value='Submit'/>
+            <SelectField id={ComponentIDs.filterFormInterests} name='interests' multiple placeholder='Interests' checkboxes/>
+            <SubmitField id={ComponentIDs.filterFormSubmit} value='Submit'/>
           </Card.Body>
         </Card>
       </AutoForm>

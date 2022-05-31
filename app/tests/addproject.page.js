@@ -1,8 +1,9 @@
 import { Selector } from 'testcafe';
+import { ComponentIDs, PageIDs } from '../imports/ui/utilities/ids';
 
 class AddProjectPage {
   constructor() {
-    this.pageId = '#add-project-page';
+    this.pageId = `#${PageIDs.addProjectPage}`;
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -19,21 +20,17 @@ class AddProjectPage {
     const description = 'Growing awesome computer scientists, one graduate at a time.';
     await this.isDisplayed(testController);
     // Define the new project
-    await testController.typeText('#name', name);
-    await testController.typeText('#picture', picture);
-    await testController.typeText('#homepage', homepage);
-    await testController.typeText('#description', description);
+    await testController.typeText(`#${ComponentIDs.addProjectFormName}`, name);
+    await testController.typeText(`#${ComponentIDs.addProjectFormPicture}`, picture);
+    await testController.typeText(`#${ComponentIDs.addProjectFormHomePage}`, homepage);
+    await testController.typeText(`#${ComponentIDs.addProjectFormDescription}`, description);
 
     // Select two interests.
-    const interestsSelector = Selector('#interests');
-    const hpcOption = interestsSelector.find('#HPC');
-    const aiOption = interestsSelector.find('#AI');
-    await testController.click(interestsSelector);
-    await testController.click(hpcOption);
-    await testController.click(aiOption);
-    await testController.click(interestsSelector);
+    const interestsSelector = Selector(`#${ComponentIDs.addProjectFormInterests} div.form-check`);
+    await testController.click(interestsSelector.nth(0));
+    await testController.click(interestsSelector.nth(8));
 
-    await testController.click('#submit');
+    await testController.click(`#${ComponentIDs.addProjectFormSubmit} input.btn.btn-primary`);
     await testController.click(Selector('.swal-button--confirm'));
   }
 }

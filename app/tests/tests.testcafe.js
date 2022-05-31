@@ -1,6 +1,6 @@
 import { landingPage } from './landing.page';
-import { signinPage } from './signin.page';
-import { signoutPage } from './signout.page';
+import { signInPage } from './signin.page';
+import { signOutPage } from './signout.page';
 import { signupPage } from './signup.page';
 import { profilesPage } from './profiles.page';
 import { projectsPage } from './projects.page';
@@ -24,9 +24,9 @@ test('Test that landing page shows up', async (testController) => {
 
 test('Test that signin and signout work', async (testController) => {
   await navBar.gotoSignInPage(testController);
-  await signinPage.signin(testController, credentials.username, credentials.password);
+  await signInPage.signin(testController, credentials.username, credentials.password);
   await navBar.logout(testController);
-  await signoutPage.isDisplayed(testController);
+  await signOutPage.isDisplayed(testController);
 });
 
 test('Test that signup page, then logout works', async (testController) => {
@@ -37,7 +37,7 @@ test('Test that signup page, then logout works', async (testController) => {
   await signupPage.signupUser(testController, newUser, credentials.password);
   // New user has successfully logged in, so now let's logout.
   await navBar.logout(testController);
-  await signoutPage.isDisplayed(testController);
+  await signOutPage.isDisplayed(testController);
 });
 
 test('Test that profiles page displays', async (testController) => {
@@ -61,7 +61,7 @@ test('Test that projects page displays', async (testController) => {
 test('Test that home page display and profile modification works', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
-  await signinPage.signin(testController, credentials.username, credentials.password);
+  await signInPage.signin(testController, credentials.username, credentials.password);
   await homePage.isDisplayed(testController);
   await homePage.updateProfile(testController, credentials.firstName);
   await navBar.ensureLogout(testController);
@@ -70,7 +70,7 @@ test('Test that home page display and profile modification works', async (testCo
 test('Test that addProject page works', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
-  await signinPage.signin(testController, credentials.username, credentials.password);
+  await signInPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoAddProjectPage(testController);
   await addProjectPage.isDisplayed(testController);
   await addProjectPage.addProject(testController);
@@ -79,7 +79,7 @@ test('Test that addProject page works', async (testController) => {
 test('Test that filter page works', async (testController) => {
   await navBar.ensureLogout(testController);
   await navBar.gotoSignInPage(testController);
-  await signinPage.signin(testController, credentials.username, credentials.password);
+  await signInPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoFilterPage(testController);
   await filterPage.isDisplayed(testController);
   await filterPage.filter(testController);
