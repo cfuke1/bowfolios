@@ -17,6 +17,7 @@ import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
 import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { pageStyle } from './pageStyles';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allInterests, allParticipants) => new SimpleSchema({
@@ -65,9 +66,9 @@ const AddProject = () => {
   const bridge = new SimpleSchema2Bridge(formSchema);
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   return ready ? (
-    <Container>
+    <Container style={pageStyle}>
       <Row id="add-project-page" className="justify-content-center">
-        <Col xs={6}>
+        <Col xs={10}>
           <Col className="text-center"><h2>Add Project</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>

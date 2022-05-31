@@ -9,6 +9,7 @@ import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { Projects } from '../../api/projects/Projects';
 import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { pageStyle } from './pageStyles';
 
 /* Gets the Project data as well as Profiles and Interests associated with the passed Project name. */
 function getProjectData(name) {
@@ -65,7 +66,7 @@ const ProjectsPage = () => {
   const projects = _.pluck(Projects.collection.find().fetch(), 'name');
   const projectData = projects.map(project => getProjectData(project));
   return ready ? (
-    <Container id="projects-page">
+    <Container id="projects-page" style={pageStyle}>
       <Row xs={1} md={2} lg={4} className="g-2">
         {_.map(projectData, (project, index) => <MakeCard key={index} project={project}/>)}
       </Row>

@@ -43,7 +43,7 @@ const SignIn = () => {
   return (
     <Container id="signin-page">
       <Row className="justify-content-center">
-        <Col xs={5}>
+        <Col xs={9}>
           <Col className="text-center">
             <h2>Login to your account</h2>
           </Col>

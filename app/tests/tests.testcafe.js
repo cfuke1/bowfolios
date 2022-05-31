@@ -23,7 +23,7 @@ test('Test that landing page shows up', async (testController) => {
 });
 
 test('Test that signin and signout work', async (testController) => {
-  await navBar.gotoSigninPage(testController);
+  await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.logout(testController);
   await signoutPage.isDisplayed(testController);
@@ -32,7 +32,7 @@ test('Test that signin and signout work', async (testController) => {
 test('Test that signup page, then logout works', async (testController) => {
   // Create a new user email address that's guaranteed to be unique.
   const newUser = `user-${new Date().getTime()}@foo.com`;
-  await navBar.gotoSignupPage(testController);
+  await navBar.gotoSignUpPage(testController);
   await signupPage.isDisplayed(testController);
   await signupPage.signupUser(testController, newUser, credentials.password);
   // New user has successfully logged in, so now let's logout.
@@ -60,7 +60,7 @@ test('Test that projects page displays', async (testController) => {
 
 test('Test that home page display and profile modification works', async (testController) => {
   await navBar.ensureLogout(testController);
-  await navBar.gotoSigninPage(testController);
+  await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await homePage.isDisplayed(testController);
   await homePage.updateProfile(testController, credentials.firstName);
@@ -69,7 +69,7 @@ test('Test that home page display and profile modification works', async (testCo
 
 test('Test that addProject page works', async (testController) => {
   await navBar.ensureLogout(testController);
-  await navBar.gotoSigninPage(testController);
+  await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoAddProjectPage(testController);
   await addProjectPage.isDisplayed(testController);
@@ -78,7 +78,7 @@ test('Test that addProject page works', async (testController) => {
 
 test('Test that filter page works', async (testController) => {
   await navBar.ensureLogout(testController);
-  await navBar.gotoSigninPage(testController);
+  await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoFilterPage(testController);
   await filterPage.isDisplayed(testController);

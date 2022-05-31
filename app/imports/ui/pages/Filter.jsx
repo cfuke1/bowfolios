@@ -14,6 +14,7 @@ import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useStickyState } from '../utilities/StickyState';
+import { pageStyle } from './pageStyles';
 
 /* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allInterests) => new SimpleSchema({
@@ -92,7 +93,7 @@ const Filter = () => {
   const emails = _.pluck(profileWithInterest, 'profile');
   const profileData = _.uniq(emails).map(email => getProfileData(email));
   return ready ? (
-    <Container id="filter-page">
+    <Container id="filter-page" style={pageStyle}>
       <AutoForm schema={bridge} onSubmit={data => submit(data)} model={ { interests } }>
         <Card>
           <Card.Body>

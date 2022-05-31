@@ -9,6 +9,7 @@ import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
 import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { pageStyle } from './pageStyles';
 
 /* Returns the Profile and associated Projects and Interests associated with the passed user email. */
 function getProfileData(email) {
@@ -66,7 +67,7 @@ const ProfilesPage = () => {
   // Need to ensure that getProfileData doesn't throw an error on line 18.
   const profileData = emails.map(email => getProfileData(email));
   return ready ? (
-    <Container id="profiles-page">
+    <Container id="profiles-page" style={pageStyle}>
       <Row xs={1} md={2} lg={4} className="g-2">
         {_.map(profileData, (profile, index) => <MakeCard key={index} profile={profile}/>)}
       </Row>

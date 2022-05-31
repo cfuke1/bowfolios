@@ -42,7 +42,7 @@ const SignUp = ({ location }) => {
   return (
     <Container id="signup-page">
       <Row className="justify-content-center">
-        <Col xs={5}>
+        <Col xs={9}>
           <Col className="text-center">
             <h2>Register your account</h2>
           </Col>
