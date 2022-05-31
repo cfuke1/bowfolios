@@ -15,7 +15,7 @@ import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useStickyState } from '../utilities/StickyState';
 
-/** Create a schema to specify the structure of the data to appear in the form. */
+/* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allInterests) => new SimpleSchema({
   interests: { type: Array, label: 'Interests', optional: true },
   'interests.$': { type: String, allowedValues: allInterests },
@@ -29,7 +29,7 @@ function getProfileData(email) {
   return _.extend({}, data, { interests, projects: projectPictures });
 }
 
-/** Component for layout out a Profile Card. */
+/* Component for layout out a Profile Card. */
 const MakeCard = (props) => (
   <Col>
     <Card className="h-100">
@@ -58,12 +58,12 @@ const MakeCard = (props) => (
   </Col>
 );
 
-/** Properties */
+/* Properties */
 MakeCard.propTypes = {
   profile: PropTypes.object.isRequired,
 };
 
-/** Renders the Profile Collection as a set of Cards. */
+/* Renders the Profile Collection as a set of Cards. */
 const Filter = () => {
   const [interests, setInterests] = useStickyState('interests', []);
 

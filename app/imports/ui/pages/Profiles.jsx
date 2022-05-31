@@ -15,7 +15,7 @@ function getProfileData(email) {
   const data = Profiles.collection.findOne({ email });
   const interests = _.pluck(ProfilesInterests.collection.find({ profile: email }).fetch(), 'interest');
   const projects = _.pluck(ProfilesProjects.collection.find({ profile: email }).fetch(), 'project');
-  const projectPictures = projects.map(project => Projects.collection.findOne({ name: project }).picture);
+  const projectPictures = projects.map(project => Projects.collection.findOne({ name: project })?.picture);
   // console.log(_.extend({ }, data, { interests, projects: projectPictures }));
   return _.extend({}, data, { interests, projects: projectPictures });
 }
@@ -48,7 +48,7 @@ MakeCard.propTypes = {
   profile: PropTypes.object.isRequired,
 };
 
-/** Renders the Profile Collection as a set of Cards. */
+/* Renders the Profile Collection as a set of Cards. */
 const ProfilesPage = () => {
 
   const { ready } = useTracker(() => {
@@ -62,6 +62,8 @@ const ProfilesPage = () => {
     };
   }, []);
   const emails = _.pluck(Profiles.collection.find().fetch(), 'email');
+  // There is a potential race condition. We might not be ready at this point.
+  // Need to ensure that getProfileData doesn't throw an error on line 18.
   const profileData = emails.map(email => getProfileData(email));
   return ready ? (
     <Container id="profiles-page">

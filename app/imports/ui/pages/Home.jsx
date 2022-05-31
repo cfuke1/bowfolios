@@ -15,7 +15,7 @@ import { Projects } from '../../api/projects/Projects';
 import { updateProfileMethod } from '../../startup/both/Methods';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-/** Create a schema to specify the structure of the data to appear in the form. */
+/* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allInterests, allProjects) => new SimpleSchema({
   email: { type: String, label: 'Email', optional: true },
   firstName: { type: String, label: 'First', optional: true },
@@ -32,7 +32,7 @@ const makeSchema = (allInterests, allProjects) => new SimpleSchema({
 /* Renders the Home Page: what appears after the user logs in. */
 const Home = () => {
 
-  /** On submit, insert the data. */
+  /* On submit, insert the data. */
   const submit = (data) => {
     Meteor.call(updateProfileMethod, data, (error) => {
       if (error) {

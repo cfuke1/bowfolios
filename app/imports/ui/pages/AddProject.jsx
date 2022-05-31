@@ -18,7 +18,7 @@ import { ProfilesProjects } from '../../api/profiles/ProfilesProjects';
 import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-/** Create a schema to specify the structure of the data to appear in the form. */
+/* Create a schema to specify the structure of the data to appear in the form. */
 const makeSchema = (allInterests, allParticipants) => new SimpleSchema({
   name: String,
   description: String,

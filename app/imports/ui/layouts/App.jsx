@@ -52,7 +52,7 @@ const ProtectedRoute = ({ children }) => {
   return isLogged ? children : <Navigate to='/signin'/>;
 };
 
-/**
+/*
  * AdminProtectedRoute (see React Router v6 sample)
  * Checks for Meteor login and admin role before routing to the requested page, otherwise goes to signin page.
  * @param {any} { component: Component, ...rest }

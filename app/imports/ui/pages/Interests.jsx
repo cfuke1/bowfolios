@@ -12,17 +12,17 @@ import { Projects } from '../../api/projects/Projects';
 import { ProjectsInterests } from '../../api/projects/ProjectsInterests';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-/** Returns the Profiles and Projects associated with the passed Interest. */
+/* Returns the Profiles and Projects associated with the passed Interest. */
 function getInterestData(name) {
   const profiles = _.pluck(ProfilesInterests.collection.find({ interest: name }).fetch(), 'profile');
   const profilePictures = profiles.map(profile => Profiles.collection.findOne({ email: profile }).picture);
   const projects = _.pluck(ProjectsInterests.collection.find({ interest: name }).fetch(), 'project');
-  const projectPictures = projects.map(project => Projects.collection.findOne({ name: project }).picture);
+  const projectPictures = projects.map(project => Projects.collection.findOne({ name: project })?.picture);
   // console.log(_.extend({ }, data, { interests, projects: projectPictures }));
   return _.extend({}, { name, profiles: profilePictures, projects: projectPictures });
 }
 
-/** Component for layout out an Interest Card. */
+/* Component for layout out an Interest Card. */
 const MakeCard = (props) => (
   <Col>
     <Card className="h-100">
