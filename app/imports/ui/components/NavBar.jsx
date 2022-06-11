@@ -16,33 +16,47 @@ const NavBar = () => {
     <Navbar expand="lg" style={menuStyle} className="bg-light">
       <Container>
         <Navbar.Brand as={NavLink} to="/">
-          <Image src="/images/logo.png" width={50}/>
-          <span className='bowfolio-green' style={{ fontWeight: 800, fontSize: '24px' }}>Bowfolios</span>
+          <Image src="/images/logo.png" width={50} />
+          <span className="bowfolio-green" style={{ fontWeight: 800, fontSize: '24px' }}>Bowfolios</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls={ComponentIDs.basicNavbarNav} />
         <Navbar.Collapse id={ComponentIDs.basicNavbarNav}>
           <Nav className="me-auto justify-content-start">
             {currentUser ? (
-              <Nav.Link as={NavLink} id={ComponentIDs.homeMenuItem} to="/home" key='home'>Home</Nav.Link>
+              <Nav.Link as={NavLink} id={ComponentIDs.homeMenuItem} to="/home" key="home">Home</Nav.Link>
             ) : ''}
-            <Nav.Link as={NavLink} id={ComponentIDs.profilesMenuItem} to="/profiles" key='profiles'>Profiles</Nav.Link>
-            <Nav.Link as={NavLink} id={ComponentIDs.projectsMenuItem} to="/projects" key='projects'>Projects</Nav.Link>
-            <Nav.Link as={NavLink} id={ComponentIDs.interestsMenuItem} to="/interests" key='interests'>Interests</Nav.Link>
+            <Nav.Link as={NavLink} id={ComponentIDs.profilesMenuItem} to="/profiles" key="profiles">Profiles</Nav.Link>
+            <Nav.Link as={NavLink} id={ComponentIDs.projectsMenuItem} to="/projects" key="projects">Projects</Nav.Link>
+            <Nav.Link as={NavLink} id={ComponentIDs.interestsMenuItem} to="/interests" key="interests">Interests</Nav.Link>
             {currentUser ? (
-              [<Nav.Link as={NavLink} id={ComponentIDs.addProjectMenuItem} to="/addProject" key='addP'>Add Project</Nav.Link>,
-                <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/filter" key='filter'>Filter</Nav.Link>]
+              [<Nav.Link as={NavLink} id={ComponentIDs.addProjectMenuItem} to="/addProject" key="addP">Add Project</Nav.Link>,
+                <Nav.Link as={NavLink} id={ComponentIDs.filterMenuItem} to="/filter" key="filter">Filter</Nav.Link>]
             ) : ''}
           </Nav>
           <Nav className="justify-content-end">
-            {currentUser === '' ? (<NavDropdown id={ComponentIDs.loginDropdown} title="Login">
-              <NavDropdown.Item id={ComponentIDs.loginDropdownSignIn} as={NavLink} to="/signin"><PersonFill />Sign
-                in</NavDropdown.Item>
-              <NavDropdown.Item id={ComponentIDs.loginDropdownSignUp} as={NavLink} to="/signup"><PersonPlusFill />Sign
-                up</NavDropdown.Item>
-            </NavDropdown>) : (<NavDropdown id={ComponentIDs.currentUserDropdown} title={currentUser}>
-              <NavDropdown.Item id={ComponentIDs.currentUserDropdownSignOut} as={NavLink} to="/signout"><BoxArrowRight /> Sign
-                out</NavDropdown.Item>
-            </NavDropdown>)}
+            {currentUser === '' ? (
+              <NavDropdown id={ComponentIDs.loginDropdown} title="Login">
+                <NavDropdown.Item id={ComponentIDs.loginDropdownSignIn} as={NavLink} to="/signin">
+                  <PersonFill />
+                  Sign
+                  in
+                </NavDropdown.Item>
+                <NavDropdown.Item id={ComponentIDs.loginDropdownSignUp} as={NavLink} to="/signup">
+                  <PersonPlusFill />
+                  Sign
+                  up
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <NavDropdown id={ComponentIDs.currentUserDropdown} title={currentUser}>
+                <NavDropdown.Item id={ComponentIDs.currentUserDropdownSignOut} as={NavLink} to="/signout">
+                  <BoxArrowRight />
+                  {' '}
+                  Sign
+                  out
+                </NavDropdown.Item>
+              </NavDropdown>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

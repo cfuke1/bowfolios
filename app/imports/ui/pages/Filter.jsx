@@ -32,29 +32,32 @@ function getProfileData(email) {
 }
 
 /* Component for layout out a Profile Card. */
-const MakeCard = (props) => (
+const MakeCard = ({ profile }) => (
   <Col>
     <Card className="h-100">
-      <Card.Header><Image src={props.profile.picture} width={50}/></Card.Header>
+      <Card.Header><Image src={profile.picture} width={50} /></Card.Header>
       <Card.Body>
-
-        <Card.Title>{props.profile.firstName} {props.profile.lastName}</Card.Title>
+        <Card.Title>
+          {profile.firstName}
+          {' '}
+          {profile.lastName}
+        </Card.Title>
         <Card.Subtitle>
-          <span className='date'>{props.profile.title}</span>
+          <span className="date">{profile.title}</span>
         </Card.Subtitle>
         <Card.Text>
-          {props.profile.bio}
+          {profile.bio}
         </Card.Text>
       </Card.Body>
       <Card.Body>
         {_.map(
-          props.profile.interests,
+          profile.interests,
           (interest, index) => <Badge key={index} bg="info">{interest}</Badge>,
         )}
       </Card.Body>
       <Card.Footer>
         <h5>Projects</h5>
-        {_.map(props.profile.projects, (project, index) => <Image key={index} src={project} width={50}/>)}
+        {_.map(profile.projects, (project, index) => <Image key={index} src={project} width={50} />)}
       </Card.Footer>
     </Card>
   </Col>
@@ -62,7 +65,15 @@ const MakeCard = (props) => (
 
 /* Properties */
 MakeCard.propTypes = {
-  profile: PropTypes.object.isRequired,
+  profile: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    picture: PropTypes.string,
+    title: PropTypes.string,
+    bio: PropTypes.string,
+    interests: PropTypes.arrayOf(PropTypes.string),
+    projects: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
 };
 
 /* Renders the Profile Collection as a set of Cards. */
@@ -95,19 +106,19 @@ const Filter = () => {
   const profileData = _.uniq(emails).map(email => getProfileData(email));
   return ready ? (
     <Container id={PageIDs.filterPage} style={pageStyle}>
-      <AutoForm schema={bridge} onSubmit={data => submit(data)} model={ { interests } }>
+      <AutoForm schema={bridge} onSubmit={data => submit(data)} model={{ interests }}>
         <Card>
           <Card.Body id={ComponentIDs.filterFormInterests}>
-            <SelectField name='interests' multiple placeholder='Interests' checkboxes/>
-            <SubmitField id={ComponentIDs.filterFormSubmit} value='Submit'/>
+            <SelectField name="interests" multiple placeholder="Interests" checkboxes />
+            <SubmitField id={ComponentIDs.filterFormSubmit} value="Submit" />
           </Card.Body>
         </Card>
       </AutoForm>
       <Row xs={1} md={2} lg={4} className="g-2" style={{ paddingTop: '10px' }}>
-        {_.map(profileData, (profile, index) => <MakeCard key={index} profile={profile}/>)}
+        {_.map(profileData, (profile, index) => <MakeCard key={index} profile={profile} />)}
       </Row>
     </Container>
-  ) : <LoadingSpinner/>;
+  ) : <LoadingSpinner />;
 };
 
 export default Filter;

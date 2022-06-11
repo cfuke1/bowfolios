@@ -23,31 +23,45 @@ function getProfileData(email) {
 }
 
 /* Component for layout out a Profile Card. */
-const MakeCard = (props) => (
+const MakeCard = ({ profile }) => (
   <Col>
     <Card className="h-100">
       <Card.Body>
-        <Card.Img src={props.profile.picture} width={50}/>
-        <Card.Title>{props.profile.firstName} {props.profile.lastName}</Card.Title>
+        <Card.Img src={profile.picture} width={50} />
+        <Card.Title>
+          {profile.firstName}
+          {' '}
+          {profile.lastName}
+        </Card.Title>
         <Card.Subtitle>
-          <span className='date'>{props.profile.title}</span>
+          <span className="date">{profile.title}</span>
         </Card.Subtitle>
         <Card.Text>
-          {props.profile.bio}
+          {profile.bio}
         </Card.Text>
-        <Card.Text>{_.map(
-          props.profile.interests,
-          (interest, index) => <Badge key={index} bg="info">{interest}</Badge>,
-        )}</Card.Text>
+        <Card.Text>
+          {_.map(
+            profile.interests,
+            (interest, index) => <Badge key={index} bg="info">{interest}</Badge>,
+          )}
+        </Card.Text>
         <h5>Projects</h5>
-        {_.map(props.profile.projects, (project, index) => <Image key={index} src={project} width={50}/>)}
+        {_.map(profile.projects, (project, index) => <Image key={index} src={project} width={50} />)}
       </Card.Body>
     </Card>
   </Col>
 );
 
 MakeCard.propTypes = {
-  profile: PropTypes.object.isRequired,
+  profile: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    bio: PropTypes.string,
+    picture: PropTypes.string,
+    title: PropTypes.string,
+    interests: PropTypes.arrayOf(PropTypes.string),
+    projects: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
 };
 
 /* Renders the Profile Collection as a set of Cards. */
@@ -70,10 +84,10 @@ const ProfilesPage = () => {
   return ready ? (
     <Container id={PageIDs.profilesPage} style={pageStyle}>
       <Row xs={1} md={2} lg={4} className="g-2">
-        {_.map(profileData, (profile, index) => <MakeCard key={index} profile={profile}/>)}
+        {_.map(profileData, (profile, index) => <MakeCard key={index} profile={profile} />)}
       </Row>
     </Container>
-  ) : <LoadingSpinner/>;
+  ) : <LoadingSpinner />;
 };
 
 export default ProfilesPage;

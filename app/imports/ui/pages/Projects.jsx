@@ -22,34 +22,41 @@ function getProjectData(name) {
 }
 
 /* Component for layout out a Project Card. */
-const MakeCard = (props) => (
+const MakeCard = ({ project }) => (
   <Col>
     <Card className="h-100">
       <Card.Body>
-        <Card.Img src={props.project.picture} width={50}/>
-        <Card.Title style={{ marginTop: '0px' }}>{props.project.name}</Card.Title>
+        <Card.Img src={project.picture} width={50} />
+        <Card.Title style={{ marginTop: '0px' }}>{project.name}</Card.Title>
         <Card.Subtitle>
-          <span className='date'>{props.project.title}</span>
+          <span className="date">{project.title}</span>
         </Card.Subtitle>
         <Card.Text>
-          {props.project.description}
+          {project.description}
         </Card.Text>
       </Card.Body>
       <Card.Body>
         {_.map(
-          props.project.interests,
-          (interest, index) => <Badge key={index} bg='info'>{interest}</Badge>,
+          project.interests,
+          (interest, index) => <Badge key={index} bg="info">{interest}</Badge>,
         )}
       </Card.Body>
       <Card.Body>
-        {_.map(props.project.participants, (p, index) => <Image key={index} roundedCircle src={p} width={50}/>)}
+        {_.map(project.participants, (p, index) => <Image key={index} roundedCircle src={p} width={50} />)}
       </Card.Body>
     </Card>
   </Col>
 );
 
 MakeCard.propTypes = {
-  project: PropTypes.object.isRequired,
+  project: PropTypes.shape({
+    description: PropTypes.string,
+    name: PropTypes.string,
+    participants: PropTypes.arrayOf(PropTypes.string),
+    picture: PropTypes.string,
+    title: PropTypes.string,
+    interests: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
 };
 
 /* Renders the Project Collection as a set of Cards. */
@@ -69,10 +76,10 @@ const ProjectsPage = () => {
   return ready ? (
     <Container id={PageIDs.projectsPage} style={pageStyle}>
       <Row xs={1} md={2} lg={4} className="g-2">
-        {_.map(projectData, (project, index) => <MakeCard key={index} project={project}/>)}
+        {_.map(projectData, (project, index) => <MakeCard key={index} project={project} />)}
       </Row>
     </Container>
-  ) : <LoadingSpinner/>;
+  ) : <LoadingSpinner />;
 };
 
 export default ProjectsPage;

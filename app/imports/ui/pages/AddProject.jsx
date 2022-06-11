@@ -72,28 +72,28 @@ const AddProject = () => {
             <Card>
               <Card.Body>
                 <Row>
-                  <Col xs={4}><TextField id={ComponentIDs.addProjectFormName} name='name' showInlineError={true} placeholder='Project name'/></Col>
-                  <Col xs={4}><TextField id={ComponentIDs.addProjectFormPicture} name='picture' showInlineError={true} placeholder='Project picture URL'/></Col>
-                  <Col xs={4}><TextField id={ComponentIDs.addProjectFormHomePage} name='homepage' showInlineError={true} placeholder='Homepage URL'/></Col>
+                  <Col xs={4}><TextField id={ComponentIDs.addProjectFormName} name="name" showInlineError placeholder="Project name" /></Col>
+                  <Col xs={4}><TextField id={ComponentIDs.addProjectFormPicture} name="picture" showInlineError placeholder="Project picture URL" /></Col>
+                  <Col xs={4}><TextField id={ComponentIDs.addProjectFormHomePage} name="homepage" showInlineError placeholder="Homepage URL" /></Col>
                 </Row>
-                <LongTextField id={ComponentIDs.addProjectFormDescription} name='description' placeholder='Describe the project here'/>
+                <LongTextField id={ComponentIDs.addProjectFormDescription} name="description" placeholder="Describe the project here" />
                 <Row>
                   <Col xs={6} id={ComponentIDs.addProjectFormInterests}>
-                    <SelectField name='interests' showInlineError={true} placeholder={'Interests'} multiple checkboxes/>
+                    <SelectField name="interests" showInlineError placeholder="Interests" multiple checkboxes />
                   </Col>
                   <Col xs={6} id={ComponentIDs.addProjectFormParticipants}>
-                    <SelectField name='participants' showInlineError={true} placeholder={'Participants'} multiple checkboxes/>
+                    <SelectField name="participants" showInlineError placeholder="Participants" multiple checkboxes />
                   </Col>
                 </Row>
-                <SubmitField id={ComponentIDs.addProjectFormSubmit} value='Submit'/>
-                <ErrorsField/>
+                <SubmitField id={ComponentIDs.addProjectFormSubmit} value="Submit" />
+                <ErrorsField />
               </Card.Body>
             </Card>
           </AutoForm>
         </Col>
       </Row>
     </Container>
-  ) : <LoadingSpinner/>;
+  ) : <LoadingSpinner />;
 };
 
 export default AddProject;

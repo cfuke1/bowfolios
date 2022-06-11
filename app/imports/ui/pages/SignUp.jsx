@@ -47,15 +47,17 @@ const SignUp = () => {
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
               <Card.Body>
-                <TextField id={ComponentIDs.signUpFormEmail} name="email" placeholder="E-mail address"/>
-                <TextField id={ComponentIDs.signUpFormPassword} name="password" placeholder="Password" type="password"/>
-                <ErrorsField/>
-                <SubmitField id={ComponentIDs.signUpFormSubmit}/>
+                <TextField id={ComponentIDs.signUpFormEmail} name="email" placeholder="E-mail address" />
+                <TextField id={ComponentIDs.signUpFormPassword} name="password" placeholder="Password" type="password" />
+                <ErrorsField />
+                <SubmitField id={ComponentIDs.signUpFormSubmit} />
               </Card.Body>
             </Card>
           </AutoForm>
           <Alert variant="secondary">
-            Already have an account? Login <Link to="/signin">here</Link>
+            Already have an account? Login
+            {' '}
+            <Link to="/signin">here</Link>
           </Alert>
           {error === '' ? (
             ''

@@ -75,26 +75,26 @@ const Home = () => {
           <Card>
             <Card.Body>
               <Row>
-                <Col xs={4}><TextField id={ComponentIDs.homeFormFirstName} name='firstName' showInlineError={true} placeholder={'First Name'}/></Col>
-                <Col xs={4}><TextField id={ComponentIDs.homeFormLastName} name='lastName' showInlineError={true} placeholder={'Last Name'}/></Col>
-                <Col xs={4}><TextField name='email' showInlineError={true} placeholder={'email'} disabled/></Col>
+                <Col xs={4}><TextField id={ComponentIDs.homeFormFirstName} name="firstName" showInlineError placeholder="First Name" /></Col>
+                <Col xs={4}><TextField id={ComponentIDs.homeFormLastName} name="lastName" showInlineError placeholder="Last Name" /></Col>
+                <Col xs={4}><TextField name="email" showInlineError placeholder="email" disabled /></Col>
               </Row>
-              <LongTextField id={ComponentIDs.homeFormBio} name='bio' placeholder='Write a little bit about yourself.'/>
+              <LongTextField id={ComponentIDs.homeFormBio} name="bio" placeholder="Write a little bit about yourself." />
               <Row>
-                <Col xs={6}><TextField name='title' showInlineError={true} placeholder={'Title'}/></Col>
-                <Col xs={6}><TextField name='picture' showInlineError={true} placeholder={'URL to picture'}/></Col>
+                <Col xs={6}><TextField name="title" showInlineError placeholder="Title" /></Col>
+                <Col xs={6}><TextField name="picture" showInlineError placeholder="URL to picture" /></Col>
               </Row>
               <Row>
-                <Col xs={6}><SelectField name='interests' showInlineError={true} multiple/></Col>
-                <Col xs={6}><SelectField name='projects' showInlineError={true} multiple/></Col>
+                <Col xs={6}><SelectField name="interests" showInlineError multiple /></Col>
+                <Col xs={6}><SelectField name="projects" showInlineError multiple /></Col>
               </Row>
-              <SubmitField id={ComponentIDs.homeFormSubmit} value='Update'/>
+              <SubmitField id={ComponentIDs.homeFormSubmit} value="Update" />
             </Card.Body>
           </Card>
         </AutoForm>
       </Col>
     </Container>
-  ) : <LoadingSpinner/>;
+  ) : <LoadingSpinner />;
 };
 
 export default Home;

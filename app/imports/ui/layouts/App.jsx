@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { Roles } from 'meteor/alanning:roles';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
@@ -22,22 +21,22 @@ import AddProject from '../pages/AddProject';
 const App = () => (
   <Router>
     <div className="d-flex flex-column min-vh-100">
-      <NavBar/>
+      <NavBar />
       <Routes>
-        <Route exact path="/" element={<Landing/>}/>
-        <Route path="/signin" element={<SignIn/>}/>
-        <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/signout" element={<SignOut/>}/>
-        <Route path="/interests" element={<Interests/>}/>
-        <Route path="/profiles" element={<Profiles/>}/>
-        <Route path="/projects" element={<Projects/>}/>
-        <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
-        <Route path="/filter" element={<ProtectedRoute><Filter/></ProtectedRoute>}/>
-        <Route path="/addproject" element={<ProtectedRoute><AddProject/></ProtectedRoute>}/>
-        <Route path="/notauthorized" element={<NotAuthorized/>}/>
-        <Route path="*" element={<NotFound/>}/>
+        <Route exact path="/" element={<Landing />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signout" element={<SignOut />} />
+        <Route path="/interests" element={<Interests />} />
+        <Route path="/profiles" element={<Profiles />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path="/filter" element={<ProtectedRoute><Filter /></ProtectedRoute>} />
+        <Route path="/addproject" element={<ProtectedRoute><AddProject /></ProtectedRoute>} />
+        <Route path="/notauthorized" element={<NotAuthorized />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </div>
   </Router>
 );
@@ -49,21 +48,7 @@ const App = () => (
  */
 const ProtectedRoute = ({ children }) => {
   const isLogged = Meteor.userId() !== null;
-  return isLogged ? children : <Navigate to='/signin'/>;
-};
-
-/*
- * AdminProtectedRoute (see React Router v6 sample)
- * Checks for Meteor login and admin role before routing to the requested page, otherwise goes to signin page.
- * @param {any} { component: Component, ...rest }
- */
-const AdminProtectedRoute = ({ children }) => {
-  const isLogged = Meteor.userId() !== null;
-  if (!isLogged) {
-    return <Navigate to='/signin'/>;
-  }
-  const isAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
-  return (isLogged && isAdmin) ? children : <Navigate to='/notauthorized'/>;
+  return isLogged ? children : <Navigate to="/signin" />;
 };
 
 // Require a component and location to be passed to each ProtectedRoute.
@@ -71,9 +56,8 @@ ProtectedRoute.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
 
-// Require a component and location to be passed to each AdminProtectedRoute.
-AdminProtectedRoute.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+ProtectedRoute.defaultProps = {
+  children: <Home />,
 };
 
 export default App;
