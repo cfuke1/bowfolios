@@ -1,6 +1,6 @@
 module.exports = {
   skipJsErrors: true,
-  hostname: "localhost",
+  hostname: 'localhost',
   retryTestPages: true,
   pageRequestTimeout: 20000,
 }
