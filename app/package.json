@@ -42,6 +42,6 @@
     "lint-fix": "eslint --quiet --fix --ext .jsx --ext .js ./imports && eslint --quiet --ext .js ./tests",
     "testcafe": "testcafe chrome tests/*.testcafe.js",
     "testcafe-single": "testcafe chrome tests/*.testcafe.js -t \"Test that addProject page works\"",
-    "testcafe-ci": "testcafe chrome:headless tests/*.testcafe.js -q --app \"meteor npm run start\""
+    "testcafe-ci": "testcafe chrome:headless tests/*.testcafe.js -q attemptLimit=5,successThreshold=2 --app \"meteor npm run start\""
   }
 }
