@@ -28,11 +28,7 @@ const MakeCard = ({ profile }) => (
     <Card className="h-100">
       <Card.Body>
         <Card.Img src={profile.picture} width={50} />
-        <Card.Title>
-          {profile.firstName}
-          {' '}
-          {profile.lastName}
-        </Card.Title>
+        <Card.Title>{profile.firstName} {profile.lastName}</Card.Title>
         <Card.Subtitle>
           <span className="date">{profile.title}</span>
         </Card.Subtitle>

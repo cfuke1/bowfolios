@@ -37,17 +37,9 @@ const MakeCard = ({ profile }) => (
     <Card className="h-100">
       <Card.Header><Image src={profile.picture} width={50} /></Card.Header>
       <Card.Body>
-        <Card.Title>
-          {profile.firstName}
-          {' '}
-          {profile.lastName}
-        </Card.Title>
-        <Card.Subtitle>
-          <span className="date">{profile.title}</span>
-        </Card.Subtitle>
-        <Card.Text>
-          {profile.bio}
-        </Card.Text>
+        <Card.Title>{profile.firstName} {profile.lastName}</Card.Title>
+        <Card.Subtitle><span className="date">{profile.title}</span></Card.Subtitle>
+        <Card.Text>{profile.bio}</Card.Text>
       </Card.Body>
       <Card.Body>
         {_.map(
