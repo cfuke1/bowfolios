@@ -26,12 +26,12 @@ function getProfileData(email) {
 const MakeCard = ({ profile }) => (
   <Col>
     <Card className="h-100">
-      <Card.Body>
-        <Card.Img src={profile.picture} width={50} />
+      <Card.Header>
+        <Image src={profile.picture} width={50} />
         <Card.Title>{profile.firstName} {profile.lastName}</Card.Title>
-        <Card.Subtitle>
-          <span className="date">{profile.title}</span>
-        </Card.Subtitle>
+        <Card.Subtitle><span className="date">{profile.title}</span></Card.Subtitle>
+      </Card.Header>
+      <Card.Body>
         <Card.Text>
           {profile.bio}
         </Card.Text>
