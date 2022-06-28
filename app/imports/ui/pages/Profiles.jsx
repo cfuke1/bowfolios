@@ -36,13 +36,10 @@ const MakeCard = ({ profile }) => (
           {profile.bio}
         </Card.Text>
         <Card.Text>
-          {_.map(
-            profile.interests,
-            (interest, index) => <Badge key={index} bg="info">{interest}</Badge>,
-          )}
+          {profile.interests.map((interest, index) => <Badge key={index} bg="info">{interest}</Badge>)}
         </Card.Text>
         <h5>Projects</h5>
-        {_.map(profile.projects, (project, index) => <Image key={index} src={project} width={50} />)}
+        {profile.projects.map((project, index) => <Image key={index} src={project} width={50} />)}
       </Card.Body>
     </Card>
   </Col>
@@ -80,7 +77,7 @@ const ProfilesPage = () => {
   return ready ? (
     <Container id={PageIDs.profilesPage} style={pageStyle}>
       <Row xs={1} md={2} lg={4} className="g-2">
-        {_.map(profileData, (profile, index) => <MakeCard key={index} profile={profile} />)}
+        {profileData.map((profile, index) => <MakeCard key={index} profile={profile} />)}
       </Row>
     </Container>
   ) : <LoadingSpinner />;

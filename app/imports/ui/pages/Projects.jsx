@@ -36,13 +36,10 @@ const MakeCard = ({ project }) => (
         </Card.Text>
       </Card.Body>
       <Card.Body>
-        {_.map(
-          project.interests,
-          (interest, index) => <Badge key={index} bg="info">{interest}</Badge>,
-        )}
+        {project.interests.map((interest, index) => <Badge key={index} bg="info">{interest}</Badge>)}
       </Card.Body>
       <Card.Body>
-        {_.map(project.participants, (p, index) => <Image key={index} roundedCircle src={p} width={50} />)}
+        {project.participants.map((p, index) => <Image key={index} roundedCircle src={p} width={50} />)}
       </Card.Body>
     </Card>
   </Col>
@@ -76,7 +73,7 @@ const ProjectsPage = () => {
   return ready ? (
     <Container id={PageIDs.projectsPage} style={pageStyle}>
       <Row xs={1} md={2} lg={4} className="g-2">
-        {_.map(projectData, (project, index) => <MakeCard key={index} project={project} />)}
+        {projectData.map((project, index) => <MakeCard key={index} project={project} />)}
       </Row>
     </Container>
   ) : <LoadingSpinner />;

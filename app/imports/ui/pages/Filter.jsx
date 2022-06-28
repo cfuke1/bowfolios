@@ -42,14 +42,11 @@ const MakeCard = ({ profile }) => (
         <Card.Text>{profile.bio}</Card.Text>
       </Card.Body>
       <Card.Body>
-        {_.map(
-          profile.interests,
-          (interest, index) => <Badge key={index} bg="info">{interest}</Badge>,
-        )}
+        {profile.interests.map((interest, index) => <Badge key={index} bg="info">{interest}</Badge>)}
       </Card.Body>
       <Card.Footer>
         <h5>Projects</h5>
-        {_.map(profile.projects, (project, index) => <Image key={index} src={project} width={50} />)}
+        {profile.projects.map((project, index) => <Image key={index} src={project} width={50} />)}
       </Card.Footer>
     </Card>
   </Col>
@@ -107,7 +104,7 @@ const Filter = () => {
         </Card>
       </AutoForm>
       <Row xs={1} md={2} lg={4} className="g-2" style={{ paddingTop: '10px' }}>
-        {_.map(profileData, (profile, index) => <MakeCard key={index} profile={profile} />)}
+        {profileData.map((profile, index) => <MakeCard key={index} profile={profile} />)}
       </Row>
     </Container>
   ) : <LoadingSpinner />;
