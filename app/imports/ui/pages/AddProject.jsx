@@ -62,6 +62,7 @@ const AddProject = () => {
   const allParticipants = _.pluck(profiles, 'email');
   const formSchema = makeSchema(allInterests, allParticipants);
   const bridge = new SimpleSchema2Bridge(formSchema);
+  const transform = (label) => ` ${label}`;
   /* Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   return ready ? (
     <Container style={pageStyle}>
@@ -79,10 +80,10 @@ const AddProject = () => {
                 <LongTextField id={ComponentIDs.addProjectFormDescription} name="description" placeholder="Describe the project here" />
                 <Row>
                   <Col xs={6} id={ComponentIDs.addProjectFormInterests}>
-                    <SelectField name="interests" showInlineError placeholder="Interests" multiple checkboxes />
+                    <SelectField name="interests" showInlineError placeholder="Interests" multiple checkboxes transform={transform} />
                   </Col>
                   <Col xs={6} id={ComponentIDs.addProjectFormParticipants}>
-                    <SelectField name="participants" showInlineError placeholder="Participants" multiple checkboxes />
+                    <SelectField name="participants" showInlineError placeholder="Participants" multiple checkboxes transform={transform} />
                   </Col>
                 </Row>
                 <SubmitField id={ComponentIDs.addProjectFormSubmit} value="Submit" />
