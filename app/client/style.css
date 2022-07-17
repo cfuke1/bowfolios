@@ -1,3 +1,6 @@
+/* Use Open Sans as the default sans serif font. */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,700|Source+Code+Pro:300,400,500,700");
+
 /* Change bootstrap variable values.
  See https://getbootstrap.com/docs/5.2/customize/css-variables/
  */
@@ -11,6 +14,25 @@ body {
   color:  #376551;
 }
 
+/* Color the Brand correctly */
+.bg-light span, .bg-light a {
+  color:  #376551;
+}
+
+/* When logged in we switch the NavBar to bg-dark so we need to override the styles to give white text. */
+.bg-dark a, .bg-dark span {
+  color: white;
+}
+
+.bg-dark a.nav-link.active {
+  color: var(--bs-gray-500);
+}
+
+.bg-dark a.dropdown-item {
+  color: #376551;
+}
+
+/* Landing page color blocking */
 .landing-green-background {
   background-color: var(--bs-dark);
   color: white;
