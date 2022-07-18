@@ -17,9 +17,8 @@ const NavBar = () => {
   return (
     <Navbar expand="lg" style={menuStyle} className={navbarClassName}>
       <Container>
-        <Navbar.Brand as={NavLink} to="/">
-          <Image src="/images/logo.png" width={50} style={{ marginBottom: 5 }} />
-          <span style={{ fontWeight: 800, fontSize: '24px' }}>Bowfolios</span>
+        <Navbar.Brand as={NavLink} to="/" className="align-items-center">
+          <span style={{ fontWeight: 800, fontSize: '24px' }}><Image src="/images/logo.png" width={50} style={{ marginBottom: 3 }} /> Bowfolios</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls={ComponentIDs.basicNavbarNav} />
         <Navbar.Collapse id={ComponentIDs.basicNavbarNav}>
