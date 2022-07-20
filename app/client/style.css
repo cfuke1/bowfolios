@@ -1,47 +1,54 @@
 /* Use Open Sans as the default sans serif font. */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,700|Source+Code+Pro:300,400,500,700");
 
+/* Create some Bowfolio CSS variables. */
+:root {
+  --bowfolio-bg: #376551;
+  --bowfolio-bg-rgb: 55, 101, 81;
+  --bowfolio-dark-text: white;
+  --bowfolio-nav-higlight-text: var(--bs-gray-500);
+}
 /* Change bootstrap variable values.
  See https://getbootstrap.com/docs/5.2/customize/css-variables/
  */
 body {
-  --bs-dark: #376551;
-  --bs-dark-rgb: 55, 101, 81;
+  --bs-dark: var(--bowfolio-bg);
+  --bs-dark-rgb: var(--bowfolio-bg-rgb);
 }
 
 /* Define custom styles */
 .bowfolio-green {
-  color:  #376551;
+  color:  var(--bowfolio-bg)
 }
 
 /* Color the Brand correctly */
 .bg-light span, .bg-light a {
-  color:  #376551;
+  color:  var(--bowfolio-bg);
 }
 
 /* When logged in we switch the NavBar to bg-dark so we need to override the styles to give white text. */
 .bg-dark a, .bg-dark span {
-  color: white;
+  color: var(--bowfolio-dark-text);
 }
 
 .bg-dark a.nav-link.active {
-  color: var(--bs-gray-500);
+  color: var(--bowfolio-nav-higlight-text);
 }
 
 .bg-dark a.dropdown-item {
-  color: #376551;
+  color: var(--bowfolio-bg);
 }
 
 /* Landing page color blocking */
 .landing-green-background {
-  background-color: var(--bs-dark);
-  color: white;
+  background-color: var(--bowfolio-bg);
+  color: var(--bowfolio-dark-text);
   padding-top: 20px;
 }
 
 .landing-white-background {
-  background-color: white;
-  color: var(--bs-dark);
+  background-color: var(--bowfolio-dark-text);
+  color: var(--bowfolio-bg);
   padding-top: 20px;
 }
 
