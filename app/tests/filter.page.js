@@ -16,12 +16,12 @@ class FilterPage {
   async filter(testController) {
     await this.isDisplayed(testController);
     // Select visualization and submit
-    const interestsSelector = Selector(`#${ComponentIDs.filterFormInterests} div.form-check`);
+    const interestsSelector = Selector(`#${ComponentIDs.filterFormInterests} div.form-check input`);
     await testController.click(interestsSelector.nth(6));
     await testController.click(`#${ComponentIDs.filterFormSubmit} input.btn.btn-primary`);
     // Check that only one card is displayed.
     const cardCount = Selector('.card').count;
-    await testController.expect(cardCount).eql(1);
+    await testController.expect(cardCount).eql(2);
   }
 }
 

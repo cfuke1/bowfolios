@@ -26,7 +26,7 @@ class AddProjectPage {
     await testController.typeText(`#${ComponentIDs.addProjectFormDescription}`, description);
 
     // Select two interests.
-    const interestsSelector = Selector(`#${ComponentIDs.addProjectFormInterests} div.form-check`);
+    const interestsSelector = Selector(`#${ComponentIDs.addProjectFormInterests} div.form-check input`);
     await testController.click(interestsSelector.nth(0));
     await testController.click(interestsSelector.nth(8));
 
