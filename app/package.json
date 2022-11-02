@@ -13,7 +13,6 @@
     "react-bootstrap": "^2.4.0",
     "react-bootstrap-icons": "^1.8.2",
     "react-dom": "^18.1.0",
-    "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "simpl-schema": "^1.12.2",
     "simpler-state": "^1.2.0",
@@ -42,6 +41,7 @@
     "lint-fix": "eslint --quiet --fix --ext .jsx --ext .js ./imports && eslint --quiet --ext .js ./tests",
     "testcafe": "testcafe chrome tests/*.testcafe.js",
     "testcafe-single": "testcafe chrome tests/*.testcafe.js -t \"Test that addProject page works\"",
-    "testcafe-ci": "testcafe chrome:headless tests/*.testcafe.js -q attemptLimit=5,successThreshold=2 --app \"meteor npm run start\""
+    "testcafe-ci": "testcafe chrome:headless tests/*.testcafe.js -q attemptLimit=5,successThreshold=2 --app \"meteor npm run start\"",
+    "unimported": "npx unimported"
   }
 }
