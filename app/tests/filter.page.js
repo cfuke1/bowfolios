@@ -17,6 +17,7 @@ class FilterPage {
     await this.isDisplayed(testController);
     // Select visualization and submit
     const interestsSelector = Selector(`#${ComponentIDs.filterFormInterests} div.form-check input`);
+    console.log(await interestsSelector.count);
     await testController.click(interestsSelector.nth(6));
     await testController.click(`#${ComponentIDs.filterFormSubmit} input.btn.btn-primary`);
     // Check that only one card is displayed.
