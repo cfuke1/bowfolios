@@ -1,6 +1,5 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
-import { Tracker } from 'meteor/tracker';
 
 /** Encapsulates state and variable values for this collection. */
 class ProjectsCollection {
@@ -15,7 +14,7 @@ class ProjectsCollection {
       homepage: { type: String, optional: true },
       description: { type: String, optional: true },
       picture: { type: String, optional: true },
-    }, { tracker: Tracker });
+    });
     // Ensure collection documents obey schema.
     this.collection.attachSchema(this.schema);
     // Define names for publications and subscriptions

@@ -1,6 +1,5 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
-import { Tracker } from 'meteor/tracker';
 
 /** Encapsulates state and variable values for this collection. */
 class ProfilesInterestsCollection {
@@ -13,7 +12,7 @@ class ProfilesInterestsCollection {
     this.schema = new SimpleSchema({
       profile: String,
       interest: String,
-    }, { tracker: Tracker });
+    });
     // Ensure collection documents obey schema.
     this.collection.attachSchema(this.schema);
     // Define names for publications and subscriptions
