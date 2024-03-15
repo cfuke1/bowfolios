@@ -1,8 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Badge, Container, Card, Image, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
-import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
 import { Profiles } from '../../api/profiles/Profiles';
 import { ProfilesInterests } from '../../api/profiles/ProfilesInterests';
@@ -11,6 +10,7 @@ import { Projects } from '../../api/projects/Projects';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { pageStyle } from './pageStyles';
 import { PageIDs } from '../utilities/ids';
+import ProfileCard from '../components/ProfileCard';
 
 /* Returns the Profile and associated Projects and Interests associated with the passed user email. */
 function getProfileData(email) {
@@ -22,43 +22,8 @@ function getProfileData(email) {
   return _.extend({}, data, { interests, projects: projectPictures });
 }
 
-/* Component for layout out a Profile Card. */
-const MakeCard = ({ profile }) => (
-  <Col>
-    <Card className="h-100">
-      <Card.Header>
-        <Image src={profile.picture} width={50} />
-        <Card.Title>{profile.firstName} {profile.lastName}</Card.Title>
-        <Card.Subtitle><span className="date">{profile.title}</span></Card.Subtitle>
-      </Card.Header>
-      <Card.Body>
-        <Card.Text>
-          {profile.bio}
-        </Card.Text>
-        <Card.Text>
-          {profile.interests.map((interest, index) => <Badge key={index} bg="info">{interest}</Badge>)}
-        </Card.Text>
-        <h5>Projects</h5>
-        {profile.projects.map((project, index) => <Image key={index} src={project} width={50} />)}
-      </Card.Body>
-    </Card>
-  </Col>
-);
-
-MakeCard.propTypes = {
-  profile: PropTypes.shape({
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    bio: PropTypes.string,
-    picture: PropTypes.string,
-    title: PropTypes.string,
-    interests: PropTypes.arrayOf(PropTypes.string),
-    projects: PropTypes.arrayOf(PropTypes.string),
-  }).isRequired,
-};
-
 /* Renders the Profile Collection as a set of Cards. */
-const ProfilesPage = () => {
+const LuckyPage = () => {
 
   const { ready } = useTracker(() => {
     // Ensure that minimongo is populated with all collections prior to running render().
@@ -74,13 +39,14 @@ const ProfilesPage = () => {
   // There is a potential race condition. We might not be ready at this point.
   // Need to ensure that getProfileData doesn't throw an error on line 18.
   const profileData = emails.map(email => getProfileData(email));
+  const profile = _.sample(profileData);
   return ready ? (
     <Container id={PageIDs.profilesPage} style={pageStyle}>
       <Row xs={1} md={2} lg={4} className="g-2">
-        {profileData.map((profile, index) => <ProfileCard key={index} profile={profile} />)}
+        <ProfileCard key={profile.lastName} profile={profile} />
       </Row>
     </Container>
   ) : <LoadingSpinner />;
 };
 
-export default ProfilesPage;
+export default LuckyPage;
